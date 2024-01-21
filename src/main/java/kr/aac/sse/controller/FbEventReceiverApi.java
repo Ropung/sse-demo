@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @RestController
@@ -26,6 +27,7 @@ public final class FbEventReceiverApi {
         InquirySseMessage messageObject = InquirySseMessage.builder()
                 // ...
                 .content("Example: " + UUID.randomUUID())
+                .time(Instant.now())
                 .build();
 
         inquiryBroadcastUseCase.broadcast(messageObject);
